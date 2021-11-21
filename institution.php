@@ -5,8 +5,8 @@ error_reporting(E_ALL);
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // collect value of input field
-  $institutionname = $_POST['aname'];
-  if (empty($name)) {
+ 
+  if (empty( $_POST['aname'])) {
     echo "Name is empty";
   } 
   
@@ -16,18 +16,18 @@ error_reporting(E_ALL);
 try{
 require "connection.php";
  
-   $stmt = $conn->prepare("INSERT INTO assessment VALUES (:institution)");
-   $stmt->bindParam(':institution', $institution);
-   
-   $institution=$institutioname;
+   $stmt = $conn->prepare("INSERT INTO Institution VALUES (:value)");
+   $stmt->bindParam(':value', $institutionname);
+    $institutionname = $_POST['aname'];
    $stmt->execute();
   }
  
    catch(PDOException $e) {
    echo " <br>";
-  echo $sql . "<br>" . $e->getMessage();
+  echo "Institution already exists in the database : " ;
 
 }
-    echo $institutionname;
+    
+}
 }
 ?>
